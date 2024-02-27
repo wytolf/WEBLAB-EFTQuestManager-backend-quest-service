@@ -41,17 +41,22 @@ function main() {
     server.post('/api/quests', async (req, res) => {
         console.log(`Quest Service: POST /api/quests wurde aufgerufen.`);
 
-        const { id, title, map, trader, link } = req.body;
+        const { title, map, trader, link } = req.body;
         console.log('Quest Service: POST /api/quests -> Request received { title: ' + title + ' }');
-        await setDoc(doc(db, "quests", id.toString()), {
-            id : id.toString(),
-            link : link,
-            map : map,
-            title : title,
-            trader : trader
-        });
-        console.log('Quest Service: POST /api/quests -> Quest erfolgreich hinzugefügt. { title: ' + title + ' }');
-        res.status(200).send();
+        try {
+            await setDoc(doc(db, "quests", title), {
+                link : link,
+                map : map,
+                title : title,
+                trader : trader
+            });
+            console.log('Quest Service: POST /api/quests -> Quest erfolgreich hinzugefügt. { title: ' + title + ' }');
+            res.status(200).send();
+        } catch (error) {
+            console.error('Quest Service: GET /api/quests -> Error fetching quests:', error);
+            res.status(500).send('Quest Service: GET /api/quests -> Internal Server Error');
+        }
+
     });
 
     server.get('/api/quests/:id', async (req, res) => {
