@@ -41,14 +41,14 @@ function main() {
     server.post('/api/quests', async (req, res) => {
         console.log(`Quest Service: POST /api/quests wurde aufgerufen.`);
 
-        const { title, map, trader, link } = req.body;
+        const {title, map, trader, link} = req.body;
         console.log('Quest Service: POST /api/quests -> Request received { title: ' + title + ' }');
         try {
             await setDoc(doc(db, "quests", title), {
-                link : link,
-                map : map,
-                title : title,
-                trader : trader
+                link: link,
+                map: map,
+                title: title,
+                trader: trader
             });
             console.log('Quest Service: POST /api/quests -> Quest erfolgreich hinzugefügt. { title: ' + title + ' }');
             res.status(200).send();
