@@ -8,7 +8,6 @@ Creates a new quest.
 
 | Parameter | Type   | Description     |
 |-----------|--------|-----------------|
-| id        | number | Unique quest ID |
 | title     | string | Questtitle      |
 | map       | string | Questlocation   |
 | trader    | string | Quest Trader    |
@@ -18,7 +17,6 @@ Creates a new quest.
 
 ```json
 {
-  "id": 1,
   "title": "Delivery from the past",
   "map": "Customs",
   "trader": "Prapor",
@@ -39,14 +37,12 @@ Returns a JSON array containing quest objects.
 ```json
 [
   {
-      "id": 1,
       "title": "Delivery from the past",
       "map": "Customs",
       "trader": "Prapor",
       "link": "http://www.example.com"
   },
   {
-      "id": 2,
       "title": "Delivery from the today",
       "map": "Woods",
       "trader": "Prapor",
@@ -75,11 +71,10 @@ Retrieves a quest with the specified ID.
 
   ```json
   {
-    "id": "unique_quest_id_here",
-    "name": "example_quest_name",
-    "type": "example_quest_type",
-    "difficulty": "example_quest_difficulty",
-    "participants": ["user1", "user2"]
+    "title": "example_quest_title",
+    "map": "example_quest_map",
+    "trader": "example_quest_trader",
+    "quests": []
   }
 
 - **404 Not Found:** If the quest with the specified ID does not exist.
